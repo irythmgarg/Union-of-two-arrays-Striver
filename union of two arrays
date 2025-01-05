@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> mergeUniqueSortedArrays(vector<int>& a, vector<int>& b) {
+    vector<int> ans;  // Vector to store the merged result
+    int i = 0, j = 0;  // Pointers to traverse arrays a and b
+    
+    // Merge the two arrays until one of them is completely traversed
+    while (i < a.size() && j < b.size()) {
+        int mini;
+        
+        // Compare elements from both arrays
+        if (a[i] < b[j]) {
+            mini = a[i];  // Take element from array a
+            i++;  // Move pointer i to the next element in array a
+        } else {
+            mini = b[j];  // Take element from array b
+            j++;  // Move pointer j to the next element in array b
+        }
+
+        // If ans is empty or the last element is different, add mini
+        if (ans.size() == 0 || ans.back() != mini) {
+            ans.push_back(mini);  // Add mini to the result vector
+        }
+    }
+
+    // Add remaining elements from array a, if any
+    while (i < a.size()) {
+        if (ans.size() == 0 || ans.back() != a[i]) {
+            ans.push_back(a[i]);  // Add element from array a to ans
+        }
+        i++;  // Move pointer i to the next element
+    }
+
+    // Add remaining elements from array b, if any
+    while (j < b.size()) {
+        if (ans.size() == 0 || ans.back() != b[j]) {
+            ans.push_back(b[j]);  // Add element from array b to ans
+        }
+        j++;  // Move pointer j to the next element
+    }
+
+    // Return the final merged array with unique elements
+    return ans;
+}
