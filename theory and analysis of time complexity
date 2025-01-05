@@ -1,0 +1,48 @@
+
+Here is the detailed explanation, code, and comments for the provided code that merges two sorted arrays (a and b) into a new array ans while removing duplicates. The code also ensures that the merged result contains only unique elements.
+
+Theory
+Problem Statement:
+Merge two sorted arrays (a and b) into one array ans, but without any duplicate elements. Both input arrays a and b are already sorted.
+
+Approach:
+
+We will traverse both arrays a and b simultaneously, comparing elements from both arrays one-by-one.
+If an element from array a is smaller than an element from array b, add it to the result ans if it isn't already the last element in the ans (to avoid duplicates).
+If an element from array b is smaller or equal to an element from array a, do the same for b.
+After comparing elements from both arrays, add any remaining elements from a and b into ans, ensuring no duplicates.
+Algorithm:
+
+Start with two pointers (i for array a and j for array b).
+Compare the elements of both arrays and add the smaller one to ans, while skipping duplicates.
+If either array is exhausted, push the remaining elements of the other array into ans, again skipping duplicates.
+Ensure that duplicates are not added by checking whether the last element of ans is the same as the element being considered.
+Complexity:
+
+Time Complexity: 
+𝑂(𝑚+𝑛)
+O(m+n), where 
+m and  n are the sizes of arrays a and b. We go through each element of both arrays exactly once.
+Space Complexity: 
+𝑂(𝑚+𝑛)
+O(m+n), for storing the result ans which can contain up to 
+m+n elements in the worst case.
+
+Algorithm Explanation
+Initialization:
+
+We initialize two pointers i and j to 0, to start comparing elements from the beginning of arrays a and b.
+We also initialize an empty vector ans that will store the result of the merged and unique elements.
+Merging Arrays:
+
+We enter a while loop where we compare the elements at the current positions of i and j in arrays a and b, respectively.
+The smaller of the two elements is added to the ans vector if it is not the same as the last element already present in ans.
+After adding an element, the pointer for the array from which the element was taken is incremented.
+Handling Remaining Elements:
+
+After one of the arrays is exhausted, we have to add the remaining elements from the other array to ans.
+We again check whether the last element in ans is the same as the current element to avoid duplicates before adding it.
+Returning Result:
+
+Once all elements from both arrays have been processed, we return the ans vector, which contains the merged unique elements.
+
